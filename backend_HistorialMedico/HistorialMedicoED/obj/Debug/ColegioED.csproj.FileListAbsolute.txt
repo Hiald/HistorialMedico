@@ -1,0 +1,5 @@
+C:\Users\jonat\Desktop\PROYECTO_COLEGIO\softwareEscuela\backend_SoftColegio\ColegioED\bin\Debug\ColegioED.dll
+C:\Users\jonat\Desktop\PROYECTO_COLEGIO\softwareEscuela\backend_SoftColegio\ColegioED\bin\Debug\ColegioED.pdb
+C:\Users\jonat\Desktop\PROYECTO_COLEGIO\softwareEscuela\backend_SoftColegio\ColegioED\obj\Debug\ColegioED.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\PROYECTO_COLEGIO\softwareEscuela\backend_SoftColegio\ColegioED\obj\Debug\ColegioED.dll
+C:\Users\jonat\Desktop\PROYECTO_COLEGIO\softwareEscuela\backend_SoftColegio\ColegioED\obj\Debug\ColegioED.pdb

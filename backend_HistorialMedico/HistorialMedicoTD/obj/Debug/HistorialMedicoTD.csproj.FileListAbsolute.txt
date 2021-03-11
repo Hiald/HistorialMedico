@@ -1,0 +1,15 @@
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\ColegioTD\obj\Debug\HistorialMedicoTD.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\HistorialMedicoTD\bin\Debug\ColegioTD.dll.config
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\HistorialMedicoTD\bin\Debug\ColegioTD.dll
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\HistorialMedicoTD\bin\Debug\ColegioTD.pdb
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\HistorialMedicoTD\bin\Debug\ColegioAD.dll
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\HistorialMedicoTD\bin\Debug\ColegioED.dll
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\HistorialMedicoTD\bin\Debug\MySql.Data.dll
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\HistorialMedicoTD\bin\Debug\ColegioAD.pdb
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\HistorialMedicoTD\bin\Debug\ColegioAD.dll.config
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\HistorialMedicoTD\bin\Debug\ColegioED.pdb
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\HistorialMedicoTD\obj\Debug\HistorialMedicoTD.csprojAssemblyReference.cache
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\HistorialMedicoTD\obj\Debug\HistorialMedicoTD.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\HistorialMedicoTD\obj\Debug\HistorialMedicoTD.csproj.CopyComplete
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\HistorialMedicoTD\obj\Debug\ColegioTD.dll
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\backend_SoftColegio\HistorialMedicoTD\obj\Debug\ColegioTD.pdb
