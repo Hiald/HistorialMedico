@@ -13,23 +13,19 @@ namespace HistorialMedicoAD
             cnMysql = cn;
         }
 
-        public int adInsertarCuenta(int adidnivel, int adidgrado, int adidsede, string adnombres, string adamaterno, string adapaterno, string adgenero
-                                    , string adcorreo, Int16 adestado, DateTime adfechaRegistro, string adimagen)
+        public int adInsertarCuenta(string adnombres, string adamaterno, string adapaterno
+                                    , string adgenero, string adcorreo)
         {
             try
             {
                 int result = -2;
                 MySqlCommand cmd = new MySqlCommand("sp_insertar_alumno", cnMysql);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("_idnivel", MySqlDbType.Int32).Value = adidnivel;
-                cmd.Parameters.Add("_idgrado", MySqlDbType.Int32).Value = adidgrado;
-                cmd.Parameters.Add("_idsede", MySqlDbType.Int32).Value = adidsede;
-                cmd.Parameters.Add("_nombres", MySqlDbType.VarChar, 50).Value = adnombres;
+                cmd.Parameters.Add("_nombre", MySqlDbType.VarChar, 50).Value = adnombres;
                 cmd.Parameters.Add("_apellido_materno", MySqlDbType.VarChar, 50).Value = adamaterno;
                 cmd.Parameters.Add("_apellido_paterno", MySqlDbType.VarChar, 50).Value = adapaterno;
                 cmd.Parameters.Add("_genero", MySqlDbType.VarChar, 1).Value = adgenero;
-                cmd.Parameters.Add("_v_imagen_ruta", MySqlDbType.VarChar, 250).Value = adimagen;
-                cmd.Parameters.Add("_correo", MySqlDbType.VarChar, 50).Value = adcorreo;
+                cmd.Parameters.Add("_correo", MySqlDbType.VarChar, 50).Value = "vacio";
                 cmd.Parameters.Add("_estado", MySqlDbType.Bit).Value = 1;
                 cmd.Parameters.Add("_fecha_registro", MySqlDbType.DateTime).Value = DateTime.Now;
 
@@ -44,39 +40,8 @@ namespace HistorialMedicoAD
             }
         }
 
-        //Actualiza los datos del usuario (Nombre,Grado,Nivel,Tipo de Usuario,Sede, Apellidos)
-        //CREADO 23/01/2021
-        public int adActualizarCuenta(int adidusuario, int adidnivel, int adidgrado, int adidsede, string adnombres, string adamaterno, string adapaterno, string adgenero
-                                    , string adcorreo, Int16 adestado, DateTime adfechaRegistro)
-        {
-            try
-            {
-                int result = -2;
-                MySqlCommand cmd = new MySqlCommand("sp_actualizar_usuario", cnMysql);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("_idusuario", MySqlDbType.Int32).Value = adidusuario;
-                cmd.Parameters.Add("_idnivel", MySqlDbType.Int32).Value = adidnivel;
-                cmd.Parameters.Add("_idgrado", MySqlDbType.Int32).Value = adidgrado;
-                cmd.Parameters.Add("_idsede", MySqlDbType.Int32).Value = adidsede;
-                cmd.Parameters.Add("_nombres", MySqlDbType.VarChar, 50).Value = adnombres;
-                cmd.Parameters.Add("_apellido_materno", MySqlDbType.VarChar, 50).Value = adamaterno;
-                cmd.Parameters.Add("_apellido_paterno", MySqlDbType.VarChar, 50).Value = adapaterno;
-                cmd.Parameters.Add("_genero", MySqlDbType.VarChar, 1).Value = adgenero;
-                cmd.Parameters.Add("_correo", MySqlDbType.VarChar, 50).Value = adcorreo;
-                cmd.Parameters.Add("_estado", MySqlDbType.Bit).Value = 1;
-                cmd.Parameters.Add("_fecha_registro", MySqlDbType.DateTime).Value = DateTime.Now;
-                result = Convert.ToInt32(cmd.ExecuteScalar());
-                return result;
-            }
-            catch (Exception ex)
-            {
-                //UtlLog.toWrite(UtlConstantes.ventaAD, UtlConstantes.LogNamespace_ventaAD, this.GetType().Name.ToString(), MethodBase.GetCurrentMethod().Name, UtlConstantes.LogTipoError, "", ex.StackTrace.ToString(), ex.Message.ToString());
-                throw ex;
-            }
-        }
-
-
-        public int adInsertarUsuario(int adidusuario, int aditipousuario, string adusuario, string adclave, string adtoken, Int16 adestado, DateTime adfechaRegistro)
+        public int adInsertarUsuario(int adidusuario, int aditipousuario, string adusuario
+                                    , string adclave)
         {
             try
             {
@@ -87,8 +52,8 @@ namespace HistorialMedicoAD
                 cmd.Parameters.Add("_tipo_usuario", MySqlDbType.Int32).Value = aditipousuario;
                 cmd.Parameters.Add("_usuario", MySqlDbType.VarChar, 45).Value = adusuario;
                 cmd.Parameters.Add("_clave", MySqlDbType.VarChar, 45).Value = adclave;
-                cmd.Parameters.Add("_token", MySqlDbType.VarChar, 300).Value = adtoken;
-                cmd.Parameters.Add("_estado", MySqlDbType.Bit).Value = adestado;
+                cmd.Parameters.Add("_token", MySqlDbType.VarChar, 300).Value = "";
+                cmd.Parameters.Add("_estado", MySqlDbType.Bit).Value = 1;
                 cmd.Parameters.Add("_fecha_registro", MySqlDbType.DateTime).Value = DateTime.Now;
 
                 result = Convert.ToInt32(cmd.ExecuteScalar());
@@ -102,12 +67,53 @@ namespace HistorialMedicoAD
             }
         }
 
+        public List<edUsuario> adListarUsuario(string adusuario, int adtipousuario)
+        {
+            try
+            {
+                List<edUsuario> slenUsuario = new List<edUsuario>();
+                using (MySqlCommand cmd = new MySqlCommand("sp_listar_usuario", cnMysql))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("_usuario", MySqlDbType.VarChar, 25).Value = adusuario;
+                    cmd.Parameters.Add("_tipousuario", MySqlDbType.Int32).Value = adtipousuario;
 
+                    using (MySqlDataReader mdrd = cmd.ExecuteReader())
+                    {
+                        if (mdrd != null)
+                        {
+                            edUsuario enUsuario = null;
+                            int pos_idusuario = mdrd.GetOrdinal("idusuario");
+                            int pos_usuario = mdrd.GetOrdinal("v_usuario");
+                            int pos_nombres = mdrd.GetOrdinal("v_nombre");
+                            int pos_apellidopaterno = mdrd.GetOrdinal("v_apellidopaterno");
+                            int pos_apellidomaterno = mdrd.GetOrdinal("v_apellidomaterno");
+                            int pos_correo = mdrd.GetOrdinal("v_correo");
+                            int pos_tipousuario = mdrd.GetOrdinal("i_tipo_usuario");
 
-
-
-
-
+                            while (mdrd.Read())
+                            {
+                                enUsuario = new edUsuario();
+                                enUsuario.idusuario = (mdrd.IsDBNull(pos_idusuario) ? 0 : mdrd.GetInt32(pos_idusuario));
+                                enUsuario.Susuario = (mdrd.IsDBNull(pos_usuario) ? "-" : mdrd.GetString(pos_usuario));
+                                enUsuario.Snombres = (mdrd.IsDBNull(pos_nombres) ? "-" : mdrd.GetString(pos_nombres));
+                                enUsuario.SApellidoPaterno = (mdrd.IsDBNull(pos_apellidopaterno) ? "-" : mdrd.GetString(pos_apellidopaterno));
+                                enUsuario.SApellidoMaterno = (mdrd.IsDBNull(pos_apellidomaterno) ? "-" : mdrd.GetString(pos_apellidomaterno));
+                                enUsuario.Scorreo = (mdrd.IsDBNull(pos_correo) ? "-" : mdrd.GetString(pos_correo));
+                                enUsuario.tipousuario = (mdrd.IsDBNull(pos_tipousuario) ? 0 : mdrd.GetInt32(pos_tipousuario));
+                                slenUsuario.Add(enUsuario);
+                            }
+                        }
+                    }
+                    return slenUsuario;
+                }
+            }
+            catch (Exception ex)
+            {
+                //UtlLog.toWrite(UtlConstantes.TProcessAD, UtlConstantes.LogNamespace_TProcessAD, this.GetType().Name.ToString(), MethodBase.GetCurrentMethod().Name, UtlConstantes.LogTipoError, "", ex.StackTrace.ToString(), ex.Message.ToString());
+                throw ex;
+            }
+        }
 
         public int adObtenerAcceso(string adusuario, string adclave)
         {
@@ -157,30 +163,24 @@ namespace HistorialMedicoAD
                     {
                         if (mdrd != null)
                         {
-                            int pos_idnivel = mdrd.GetOrdinal("idnivel");
-                            int pos_idgrado = mdrd.GetOrdinal("idgrado");
-                            int pos_idsede = mdrd.GetOrdinal("idsede");
-                            int pos_idseccion = mdrd.GetOrdinal("idseccion");
-                            int pos_nombres = mdrd.GetOrdinal("v_nombres");
-                            int pos_apellidopaterno = mdrd.GetOrdinal("v_apellido_paterno");
-                            int pos_apellidomaterno = mdrd.GetOrdinal("v_apellido_materno");
+                            int pos_idusuario = mdrd.GetOrdinal("idusuario");
+                            int pos_vusuario = mdrd.GetOrdinal("v_usuario");
+                            int pos_nombres = mdrd.GetOrdinal("v_nombre");
+                            int pos_apellidopaterno = mdrd.GetOrdinal("v_apellidopaterno");
+                            int pos_apellidomaterno = mdrd.GetOrdinal("v_apellidomaterno");
                             int pos_correo = mdrd.GetOrdinal("v_correo");
                             int pos_tipousuario = mdrd.GetOrdinal("i_tipo_usuario");
-                            int pos_imagenruta = mdrd.GetOrdinal("v_imagen_ruta");
 
                             while (mdrd.Read())
                             {
                                 senUsuario = new edUsuario();
-                                senUsuario.idnivel = (mdrd.IsDBNull(pos_idnivel) ? 0 : mdrd.GetInt32(pos_idnivel));
-                                senUsuario.idgrado = (mdrd.IsDBNull(pos_idgrado) ? 0 : mdrd.GetInt32(pos_idgrado));
-                                senUsuario.idsede = (mdrd.IsDBNull(pos_idsede) ? 0 : mdrd.GetInt32(pos_idsede));
-                                senUsuario.idseccion = (mdrd.IsDBNull(pos_idseccion) ? 0 : mdrd.GetInt32(pos_idseccion));
+                                senUsuario.idusuario = (mdrd.IsDBNull(pos_idusuario) ? 0 : mdrd.GetInt32(pos_idusuario));
+                                senUsuario.Susuario = (mdrd.IsDBNull(pos_vusuario) ? "-" : mdrd.GetString(pos_vusuario));
                                 senUsuario.Snombres = (mdrd.IsDBNull(pos_nombres) ? "-" : mdrd.GetString(pos_nombres));
                                 senUsuario.SApellidoPaterno = (mdrd.IsDBNull(pos_apellidopaterno) ? "-" : mdrd.GetString(pos_apellidopaterno));
                                 senUsuario.SApellidoMaterno = (mdrd.IsDBNull(pos_apellidomaterno) ? "-" : mdrd.GetString(pos_apellidomaterno));
                                 senUsuario.Scorreo = (mdrd.IsDBNull(pos_correo) ? "-" : mdrd.GetString(pos_correo));
                                 senUsuario.tipousuario = (mdrd.IsDBNull(pos_tipousuario) ? 0 : mdrd.GetInt32(pos_tipousuario));
-                                senUsuario.simagenruta = (mdrd.IsDBNull(pos_imagenruta) ? "/imagenalumno/vacio.png" : mdrd.GetString(pos_imagenruta));
                             }
                         }
                     }
@@ -194,60 +194,39 @@ namespace HistorialMedicoAD
             }
         }
 
-        public List<edUsuario> adListarUsuario(string adusuario, int adtipousuario)
+
+
+
+
+
+
+        //Actualiza los datos del usuario (Nombre,Grado,Nivel,Tipo de Usuario,Sede, Apellidos)
+        //CREADO 23/01/2021
+        public int adActualizarCuenta(int adidusuario, int adidnivel, int adidgrado, int adidsede, string adnombres, string adamaterno, string adapaterno, string adgenero
+                                    , string adcorreo, Int16 adestado, DateTime adfechaRegistro)
         {
             try
             {
-                List<edUsuario> slenUsuario = new List<edUsuario>();
-                using (MySqlCommand cmd = new MySqlCommand("sp_listar_usuario", cnMysql))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("_usuario", MySqlDbType.VarChar, 25).Value = adusuario;
-                    cmd.Parameters.Add("_tipousuario", MySqlDbType.Int32).Value = adtipousuario;
-
-                    using (MySqlDataReader mdrd = cmd.ExecuteReader())
-                    {
-                        if (mdrd != null)
-                        {
-                            edUsuario enUsuario = null;
-                            int pos_idnivel = mdrd.GetOrdinal("idnivel");
-                            int pos_idusuario = mdrd.GetOrdinal("idusuario");
-                            int pos_idgrado = mdrd.GetOrdinal("idgrado");
-                            int pos_idsede = mdrd.GetOrdinal("idsede");
-                            int pos_idseccion = mdrd.GetOrdinal("idseccion");
-                            int pos_usuario = mdrd.GetOrdinal("v_usuario");
-                            int pos_nombres = mdrd.GetOrdinal("v_nombres");
-                            int pos_apellidopaterno = mdrd.GetOrdinal("v_apellido_paterno");
-                            int pos_apellidomaterno = mdrd.GetOrdinal("v_apellido_materno");
-                            int pos_correo = mdrd.GetOrdinal("v_correo");
-                            int pos_tipousuario = mdrd.GetOrdinal("i_tipo_usuario");
-                            int pos_imagenruta = mdrd.GetOrdinal("v_imagen_ruta");
-
-                            while (mdrd.Read())
-                            {
-                                enUsuario = new edUsuario();
-                                enUsuario.idnivel = (mdrd.IsDBNull(pos_idnivel) ? 0 : mdrd.GetInt32(pos_idnivel));
-                                enUsuario.idusuario = (mdrd.IsDBNull(pos_idusuario) ? 0 : mdrd.GetInt32(pos_idusuario));
-                                enUsuario.idgrado = (mdrd.IsDBNull(pos_idgrado) ? 0 : mdrd.GetInt32(pos_idgrado));
-                                enUsuario.idsede = (mdrd.IsDBNull(pos_idsede) ? 0 : mdrd.GetInt32(pos_idsede));
-                                enUsuario.idseccion = (mdrd.IsDBNull(pos_idseccion) ? 0 : mdrd.GetInt32(pos_idseccion));
-                                enUsuario.Susuario = (mdrd.IsDBNull(pos_usuario) ? "-" : mdrd.GetString(pos_usuario));
-                                enUsuario.Snombres = (mdrd.IsDBNull(pos_nombres) ? "-" : mdrd.GetString(pos_nombres));
-                                enUsuario.SApellidoPaterno = (mdrd.IsDBNull(pos_apellidopaterno) ? "-" : mdrd.GetString(pos_apellidopaterno));
-                                enUsuario.SApellidoMaterno = (mdrd.IsDBNull(pos_apellidomaterno) ? "-" : mdrd.GetString(pos_apellidomaterno));
-                                enUsuario.Scorreo = (mdrd.IsDBNull(pos_correo) ? "-" : mdrd.GetString(pos_correo));
-                                enUsuario.tipousuario = (mdrd.IsDBNull(pos_tipousuario) ? 0 : mdrd.GetInt32(pos_tipousuario));
-                                enUsuario.simagenruta = (mdrd.IsDBNull(pos_imagenruta) ? "-" : mdrd.GetString(pos_imagenruta));
-                                slenUsuario.Add(enUsuario);
-                            }
-                        }
-                    }
-                    return slenUsuario;
-                }
+                int result = -2;
+                MySqlCommand cmd = new MySqlCommand("sp_actualizar_usuario", cnMysql);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("_idusuario", MySqlDbType.Int32).Value = adidusuario;
+                cmd.Parameters.Add("_idnivel", MySqlDbType.Int32).Value = adidnivel;
+                cmd.Parameters.Add("_idgrado", MySqlDbType.Int32).Value = adidgrado;
+                cmd.Parameters.Add("_idsede", MySqlDbType.Int32).Value = adidsede;
+                cmd.Parameters.Add("_nombres", MySqlDbType.VarChar, 50).Value = adnombres;
+                cmd.Parameters.Add("_apellido_materno", MySqlDbType.VarChar, 50).Value = adamaterno;
+                cmd.Parameters.Add("_apellido_paterno", MySqlDbType.VarChar, 50).Value = adapaterno;
+                cmd.Parameters.Add("_genero", MySqlDbType.VarChar, 1).Value = adgenero;
+                cmd.Parameters.Add("_correo", MySqlDbType.VarChar, 50).Value = adcorreo;
+                cmd.Parameters.Add("_estado", MySqlDbType.Bit).Value = 1;
+                cmd.Parameters.Add("_fecha_registro", MySqlDbType.DateTime).Value = DateTime.Now;
+                result = Convert.ToInt32(cmd.ExecuteScalar());
+                return result;
             }
             catch (Exception ex)
             {
-                //UtlLog.toWrite(UtlConstantes.TProcessAD, UtlConstantes.LogNamespace_TProcessAD, this.GetType().Name.ToString(), MethodBase.GetCurrentMethod().Name, UtlConstantes.LogTipoError, "", ex.StackTrace.ToString(), ex.Message.ToString());
+                //UtlLog.toWrite(UtlConstantes.ventaAD, UtlConstantes.LogNamespace_ventaAD, this.GetType().Name.ToString(), MethodBase.GetCurrentMethod().Name, UtlConstantes.LogTipoError, "", ex.StackTrace.ToString(), ex.Message.ToString());
                 throw ex;
             }
         }

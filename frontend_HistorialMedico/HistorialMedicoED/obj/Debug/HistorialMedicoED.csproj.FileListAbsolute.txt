@@ -1,0 +1,6 @@
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\frontend_HistorialMedico\HistorialMedicoED\bin\Debug\frontendED.dll
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\frontend_HistorialMedico\HistorialMedicoED\bin\Debug\frontendED.pdb
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\frontend_HistorialMedico\HistorialMedicoED\obj\Debug\HistorialMedicoED.csprojAssemblyReference.cache
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\frontend_HistorialMedico\HistorialMedicoED\obj\Debug\HistorialMedicoED.csproj.CoreCompileInputs.cache
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\frontend_HistorialMedico\HistorialMedicoED\obj\Debug\frontendED.dll
+C:\Users\jonat\Desktop\ProyectoDoctor\HistorialMedico\frontend_HistorialMedico\HistorialMedicoED\obj\Debug\frontendED.pdb

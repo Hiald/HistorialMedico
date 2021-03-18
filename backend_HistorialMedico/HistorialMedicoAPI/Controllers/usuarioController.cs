@@ -12,15 +12,15 @@ namespace HistorialMedicoAPI.Controllers
         tdUsuario itdUsuario;
 
         [HttpGet]
-        public int wsInsertarCuenta(int widnivel, int widgrado, int widsede, string wnombres, string wamaterno, string wapaterno, string wgenero
-                                    , string wcorreo, Int16 westado, string wfechaRegistro, string wimagen)
+        public int wsInsertarCuenta(string wnombres, string wamaterno, string wapaterno
+                                    , string wgenero, string wcorreo)
         {
             int iresultado = -4;
             try
             {
                 itdUsuario = new tdUsuario();
-                iresultado = itdUsuario.tdInsertarCuenta(widnivel, widgrado, widsede, wnombres, wamaterno, wapaterno, wgenero
-                                                        , wcorreo, westado, DateTime.Now, wimagen);
+                iresultado = itdUsuario.tdInsertarCuenta(wnombres, wamaterno, wapaterno,
+                                                wgenero, wcorreo);
                 return iresultado;
             }
             catch (Exception ex)
@@ -29,17 +29,15 @@ namespace HistorialMedicoAPI.Controllers
             }
         }
 
-        //23/01/2021
         [HttpGet]
-        public int wsActualizarCuenta(int widusuario, int widnivel, int widgrado, int widsede, string wnombres, string wamaterno, string wapaterno, string wgenero
-                                    , string wcorreo, Int16 westado, string wfechaRegistro)
+        public int wsInsertarUsuario(int widusuario, int witipousuario, string wusuario,
+                            string wclave)
         {
-            int iresultado = -4;
+            int iresultado = -2;
             try
             {
                 itdUsuario = new tdUsuario();
-                iresultado = itdUsuario.tdActualizarCuenta(widusuario, widnivel, widgrado, widsede, wnombres, wamaterno, wapaterno, wgenero
-                                                        , wcorreo, westado, DateTime.Now);
+                iresultado = itdUsuario.tdInsertarUsuario(widusuario, witipousuario, wusuario, wclave);
                 return iresultado;
             }
             catch (Exception ex)
@@ -47,19 +45,24 @@ namespace HistorialMedicoAPI.Controllers
                 return iresultado;
             }
         }
+
         [HttpGet]
-        public int wsInsertarUsuario(int widusuario, int wtipousuario, string wusuario, string wclave, string wtoken, Int16 westado, string wfechaRegistro)
+        public string wsListarUsuario(string wusuario, int wtipousuario)
         {
-            int iresultado = -2;
+            List<edUsuario> enUsuario = new List<edUsuario>();
             try
             {
+                var valorusuario = "";
+                if (wusuario != null)
+                    valorusuario = wusuario;
+
                 itdUsuario = new tdUsuario();
-                iresultado = itdUsuario.tdInsertarUsuario(widusuario, wtipousuario, wusuario, wclave, wtoken, westado, DateTime.Now);
-                return iresultado;
+                enUsuario = itdUsuario.tdListarUsuario(valorusuario, wtipousuario);
+                return JsonConvert.SerializeObject(enUsuario);
             }
             catch (Exception ex)
             {
-                return iresultado;
+                return JsonConvert.SerializeObject(ex);
             }
         }
 
@@ -96,23 +99,28 @@ namespace HistorialMedicoAPI.Controllers
             }
         }
 
+
+
+
+
+
+
+        //23/01/2021
         [HttpGet]
-        public string wsListarUsuario(string wusuario, int wtipousuario)
+        public int wsActualizarCuenta(int widusuario, int widnivel, int widgrado, int widsede, string wnombres, string wamaterno, string wapaterno, string wgenero
+                                    , string wcorreo, Int16 westado, string wfechaRegistro)
         {
-            List<edUsuario> enUsuario = new List<edUsuario>();
+            int iresultado = -4;
             try
             {
-                var valorusuario = "";
-                if (wusuario != null)
-                    valorusuario = wusuario;
-
                 itdUsuario = new tdUsuario();
-                enUsuario = itdUsuario.tdListarUsuario(valorusuario, wtipousuario);
-                return JsonConvert.SerializeObject(enUsuario);
+                iresultado = itdUsuario.tdActualizarCuenta(widusuario, widnivel, widgrado, widsede, wnombres, wamaterno, wapaterno, wgenero
+                                                        , wcorreo, westado, DateTime.Now);
+                return iresultado;
             }
             catch (Exception ex)
             {
-                return JsonConvert.SerializeObject(ex);
+                return iresultado;
             }
         }
 
