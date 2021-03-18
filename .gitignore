@@ -1,0 +1,5 @@
+﻿################################################################################
+# Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
+################################################################################
+
+/frontend_HistorialMedico/.vs/frontend_HistorialMedico/v15/Server/sqlite3
