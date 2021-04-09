@@ -1,0 +1,542 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .left-side-menu {
+        width: 260px;
+        z-index: 10;
+        background: linear-gradient( 135deg,#8f75da 0,#727cf5 60%);
+        bottom: 0;
+        position: fixed;
+        -webkit-transition: all .2s ease-out;
+        transition: all .2s ease-out;
+        top: 0;
+        padding-top: 70px;
+        webkit-box-shadow: 0 0 35px 0 #fff;
+        box-shadow: 0 0 35px 0 #fff;
+    }
+</style>
+<h2>Paciente</h2>
+
+<br />
+
+<div class="row">
+    <div class="col-sm-9">
+        <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade active show" id="filiacion1" role="tabpanel" aria-labelledby="filiacion1-tab">
+                <h3>Datos generales</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="simpleinput">Nombre</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="simpleinput">Edad</label>
+                            <input type="number" min="0" max="99" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-select">Sexo</label>
+                            <select class="form-control" id="example-select">
+                                <option value="0">Seleccione</option>
+                                <option value="1">Masculino</option>
+                                <option value="2">Femenino</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Fecha Nacimiento</label>
+                            <input class="form-control" id="example-date" type="date">
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="simpleinput">Documento de Identidad</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="simpleinput">Correo electrónico</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="simpleinput">Lugar de nacimiento</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="simpleinput">Lugar de residencia</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="simpleinput">Lugar de atención</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="simpleinput">País</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="simpleinput">Religión</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="example-select">Estado civil</label>
+                            <select class="form-control" id="example-select">
+                                <option value="0">Seleccione</option>
+                                <option value="1">Soltero/a</option>
+                                <option value="2">Casado/a</option>
+                                <option value="3">Viudo/a</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="example-date">Fecha de Atención</label>
+                            <input class="form-control" id="example-date" type="date">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="simpleinput">Médico de atención</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-md-12 justify-content-left">
+                        <h3>Signos vitales</h3>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="simpleinput">FC:</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="simpleinput">FR:</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="simpleinput">PA:</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="simpleinput">T°:</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="simpleinput">Peso:</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="simpleinput">Talla:</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="simpleinput">IMC:</label>
+                            <input type="text" id="simpleinput" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-12 justify-content-left">
+                        <button class="btn btn-success">Siguiente</button>
+                    </div>
+                </div>
+                <br />
+                <br />
+            </div>
+            <div class="tab-pane fade" id="antecedentes" role="tabpanel" aria-labelledby="antecedentes-tab">
+                <h3>Antecedentes</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="simpleinput">Problemas médicos actuales y hospitalizaciones</label>
+                            <textarea rows="4" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="example-date">Presentó fracturas</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="example-date">Ha tenido una lesión grave:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="example-date">Presentó alguna cirugía</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-md-12 justify-content-left">
+                        <h3>Historia social</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="example-date">Fuma:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="example-date">Toma bebidas alcohólicas:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="example-date">Alguna vez probó una droga:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="example-date">¿Trabaja y dónde?</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-md-12 justify-content-left">
+                        <h3>Historia Familiar</h3>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-select">Hipertensión arterial</label>
+                            <select class="form-control" id="example-select">
+                                <option value="0">Seleccione</option>
+                                <option value="1">Papá</option>
+                                <option value="2">Mamá</option>
+                                <option value="3">Tía</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Diabetes Mellitus:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Artritis Reumatoidea:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Lupus:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Osteoporosis:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Osteoartrosis:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Fibromialgia:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Asma:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Parasitosis:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Depresión:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Alergia:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Otros:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-md-12 justify-content-left">
+                        <h3>Medicación habitual</h3>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="example-date">Nombre del medicamento:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="example-date">Dosis:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="example-date">Frecuencia:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-md-12 justify-content-left">
+                        <button class="btn btn-success">Siguiente</button>
+                    </div>
+                </div>
+                <br />
+                <br />
+            </div>
+            <div class="tab-pane fade" id="enfermedadActual" role="tabpanel" aria-labelledby="enfermedadActual-tab">
+                <h3>Enfermedad Actual</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="example-date">Tiempo de enfermedad:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="example-date">Relato:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="example-date">Forma de inicio:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+            </div>
+            <div class="tab-pane fade" id="examenFisico" role="tabpanel" aria-labelledby="examenFisico-tab">
+                <h3>Exámen Físico</h3>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Piel y mucosas:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Cabeza y cuello:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Ojos:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Oidos:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Orofaringe:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Cuello:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Linfáticos:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">TCSC:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Torax y Ap. Respiratorio:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">AP. Cardiovascular</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Abdomen:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Genitourinario:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Neurológico:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Músculo esquelético:</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Ginecologico: TV</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="example-date">Ano y recto: TR</label>
+                            <input class="form-control" id="example-date" type="text">
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+            </div>
+            <div class="tab-pane fade" id="impresionDiagnostica" role="tabpanel" aria-labelledby="impresionDiagnostica-tab">
+                <h3>Impresión diagnóstica</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="example-date">Descrpción:</label>
+                            <textarea rows="5" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+            </div>
+        </div> <!-- end tab-content-->
+    </div> <!-- end col-->
+
+    <div class="col-sm-3 mb-2 mb-sm-0">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active show" id="filiacion1-tab" data-toggle="pill" href="#filiacion1" role="tab" aria-controls="filiacion1"
+               aria-selected="true">
+                <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                <span class="d-none d-md-block">FILIACIÓN</span>
+            </a>
+            <a class="nav-link" id="antecedentes-tab" data-toggle="pill" href="#antecedentes" role="tab" aria-controls="antecedentes"
+               aria-selected="false">
+                <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                <span class="d-none d-md-block">ANTECEDENTES</span>
+            </a>
+            <a class="nav-link" id="enfermedadActual-tab" data-toggle="pill" href="#enfermedadActual" role="tab" aria-controls="enfermedadActual"
+               aria-selected="false">
+                <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                <span class="d-none d-md-block">ENFERMEDAD ACTUAL</span>
+            </a>
+            <a class="nav-link" id="examenFisico-tab" data-toggle="pill" href="#examenFisico" role="tab" aria-controls="examenFisico"
+               aria-selected="false">
+                <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                <span class="d-none d-md-block">EXAMEN FÍSICO</span>
+            </a>
+            <a class="nav-link" id="impresionDiagnostica-tab" data-toggle="pill" href="#impresionDiagnostica" role="tab" aria-controls="impresionDiagnostica"
+               aria-selected="false">
+                <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                <span class="d-none d-md-block">IMPRESIÓN DIAGNÓSTICA</span>
+            </a>
+            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+               aria-selected="false">
+                <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                <span class="d-none d-md-block">PLAN</span>
+            </a>
+            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+               aria-selected="false">
+                <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                <span class="d-none d-md-block">REEVALUACION</span>
+            </a>
+            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+               aria-selected="false">
+                <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                <span class="d-none d-md-block">REVISION DE SISTEMAS</span>
+            </a>
+        </div>
+    </div> <!-- end col-->
+
+
+
+</div>
+<!-- end row-->

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using frontend_HistorialMedico.Filters;
+using HistorialMedicoUtil;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,10 @@ namespace frontend_SoftColegio.Controllers
 {
     public class moduloController : Controller
     {
-        // GET: modulo
+        [SecuritySession]
         public ActionResult Index()
         {
+            ViewBag.GrolUsuario = UtlAuditoria.ObtenerTipoUsuario();
             return View();
         }
     }

@@ -460,7 +460,6 @@
     <Folder Include="Scripts\" />
     <Folder Include="Views\Asistencia\" />
     <Folder Include="Views\contenido\" />
-    <Folder Include="Views\modulo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\fonts\dripicons-v2.eot" />
@@ -520,6 +519,7 @@
     <Content Include="Views\Calificacion\Libreta.cshtml" />
     <Content Include="Views\Docente\Asistencia.cshtml" />
     <None Include="Properties\PublishProfiles\FrontEnd_HistorialMedico.pubxml" />
+    <Content Include="Views\modulo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HistorialMedicoED\HistorialMedicoED.csproj">
